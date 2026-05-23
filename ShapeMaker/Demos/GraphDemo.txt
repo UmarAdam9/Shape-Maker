@@ -1,0 +1,128 @@
+#include "Application/Application.h"
+#include "Visualizer.h" //includes Renderer.h ,glfw,glad,math.h,glm even iostream
+#include "Collider2D.h"
+using namespace glm;
+using namespace std;
+
+
+
+/** TODO list
+
+    1. slider name glitch
+    2. pointChecker not working with triangles
+    3. mousescroll callback [DONE]
+    4. A func scale and grid scale variable that is attached automatically [DONE]
+    5. seperate variables for mouse drawing position , mouse collision checking position and collider to mouse snapping position
+    6. safety measures for canvas binding
+**/
+
+
+void DrawCollider2D(Collider2D shape,vec3 col,float thickness, Renderer& myRenderer , float worldScale )
+{
+    for(int i=0;i<shape.transformedVertices.size();i++)
+    {
+        myRenderer.DrawLine2D(shape.transformedVertices[i], shape.transformedVertices[(i+1) % shape.transformedVertices.size()] ,col,thickness , worldScale);
+    }
+}
+
+struct sRenderingApplication : public sApplication
+{
+
+    void m_RenderFunction() override
+    {
+        //All of these HAVE to be constructed in this order AND in main.c (so on the stack)
+        Visualizer myViz(2048,800);
+        vector<Canvas>vecCan{ Canvas(1, 800 , 800) ,  Canvas(2, 800 , 800 ,vec4(0.8 ,0,0.2,1)) , Canvas(3, 800 , 800 , vec4(0.0 ,0.1,0.6,1)) , Canvas(4, 800 , 800 , vec4(0.0 ,0.0,0.0,1)) };
+        Renderer myRenderer(0,1,1,1,1,1);
+        myRenderer.init_renderer(5120000,800,800);
+
+
+        Collider2D squareCollider(vec2(5,5),vector<vec2>{vec2(-2,-2),vec2(-2,2),vec2(2,2),vec2(2,-2)} );
+        squareCollider.scale = vec2(10,10);
+
+        char localbufferprint[1500]={};
+        int spacing = 2;
+        vecCan[0].m_addIntSlider(&spacing , "spacing", 1 ,10);
+
+        int y_scale = 1;
+        vecCan[0].m_addIntSlider(&y_scale , "y_scale", 1 ,10);
+
+        int xOffset = 0;
+        vecCan[0].m_addIntSlider(&xOffset , "xOffset", -10000 ,10000);
+
+        int yOffset = 0;
+        vecCan[0].m_addIntSlider(&yOffset , "yOffset", -1000 ,1000);
+
+
+        float lineWeight = 0.1;
+        vecCan[0].m_addFloatSlider(&lineWeight , "lineWeight", 0 ,1);
+
+        while(!glfwWindowShouldClose(myViz.m_window))
+        {
+
+
+            getDataFromUDPThread( m_udpRecvInfo[0], localbufferprint, 1300);
+
+
+            //==================
+            //start viz
+            //==================
+            myViz.m_startFrame();
+            //==================
+
+
+            //Draw everything=======================================
+
+             vecCan[0].m_bindCanvas(myRenderer); //updates mouse position as well
+
+                if(vecCan[0].m_isActive)
+                    AssignScrollCallbackVariables(myViz,vecCan[0]);
+
+                for(int i=0;i<1300 - 1;i++)
+                {
+                    myRenderer.DrawCircle2D(vec2( i*spacing- xOffset, localbufferprint[i]* y_scale - yOffset),2,vec3(1,1,1),0.3,vecCan[0].m_funcScale);
+                    myRenderer.DrawLine2D(vec2( i*spacing - xOffset, localbufferprint[i]*y_scale - yOffset),vec2( (i+1)*spacing- xOffset, localbufferprint[i+1]*y_scale - yOffset),vec3(1,1,1),lineWeight,vecCan[0].m_funcScale);
+
+                }
+
+                //draw mouse not in world space but rather translated and at a constant scale
+                if( vecCan[0].m_isActive)
+                   myRenderer.DrawCircle2D(vec2( vecCan[0].m_mouseWorldCoord.x, vecCan[0].m_mouseWorldCoord.y),2,vec3(1,0,0),0.3,1);
+
+             vecCan[0].m_RenderCanvas(myRenderer);
+
+
+
+            //=================
+            //Render Viz
+            //=================
+            myViz.m_finishFrame(myRenderer);
+            //=================
+
+        }
+        myViz.m_destroyViz();
+    }
+
+};
+
+sRenderingApplication myApp;
+
+
+
+int main()
+{
+    char appIP[] = "192.168.100.20";
+    char serverIP[] = "192.168.100.20";
+    vector<int>portArr = {4992,4991};
+    vector<char*>serverIPArr = {serverIP};
+    if( myApp.m_initApp(1,appIP,portArr ,serverIPArr ,10) == 0)
+    {
+        cout<<"App initialized successfully!"<<endl;
+        myApp.m_startApp(1500);
+    }
+    else
+        cout<<"App initialization failed"<<endl;
+
+    return 0;
+}
+

@@ -1,0 +1,67 @@
+#version 330 core
+
+out vec4 FragColor;
+in vec2 texCoords;
+
+uniform sampler2D screenTexture;
+
+const float offset_x = 1.0f/800.0f;
+const float offset_y = 1.0f/800.0f;
+
+vec2 offsets[9]= vec2[]
+(
+ vec2(-offset_x, offset_y) ,  vec2(0.0f, offset_y) , vec2(offset_x, offset_y),
+ vec2(-offset_x, 0.0f) ,      vec2(0.0f , 0.0f) ,   vec2(offset_x,0.0f),
+ vec2(-offset_x, -offset_y) , vec2(0.0f,-offset_y) , vec2(offset_x, -offset_y)
+
+);
+
+float kernel_1[9] = float[] //Do nothing kernal (better to just assign texture as is instead of wasting performance)
+(
+    0,0,0,
+    0,1,0,
+    0,0,0
+);
+
+
+float kernel_2[9] = float[]  //edge detection kernel
+(
+     1,  1, 1,
+     1, -8, 1,
+     1,  1, 1
+);
+
+float kernel_3[9] = float[]  //box blur kernel DONOT use 1/9 use 1.0f/9.0f !
+(
+     1.0f/9.0f,  1.0f/9.0f, 1.0f/9.0f,
+     1.0f/9.0f,  1.0f/9.0f, 1.0f/9.0f,
+     1.0f/9.0f,  1.0f/9.0f, 1.0f/9.0f
+);
+
+
+float kernel_4[9] = float[]  //Gaussian blur kernel DONOT use 1/9 use 1.0f/9.0f !
+(
+    1.0f/16.0f,  1.0f/8.0f, 1.0f/16.0f,
+    1.0f/8.0f,   1.0f/4.0f, 1.0f/8.0f,
+    1.0f/16.0f,  1.0f/8.0f, 1.0f/16.0f
+);
+
+
+
+
+
+void main()
+{
+    vec3 color = vec3(0.0f);
+    vec3 color2= vec3(0.0f);
+
+    for(int i=0;i<9;i++)
+        color+=vec3(texture(screenTexture,texCoords.xy+offsets[i]))*kernel_1[i]; //texCoords.xy returns a vec2(texCoord.x,texCoords.y)
+    //for(int i=0;i<9;i++)
+      //  color2+=vec3(texture(screenTexture,texCoords.xy+offsets[i]))*kernel_2[i]; //texCoords.xy returns a vec2(texCoord.x,texCoords.y)
+
+
+    FragColor = vec4(color+color2,1.0f);
+
+
+}

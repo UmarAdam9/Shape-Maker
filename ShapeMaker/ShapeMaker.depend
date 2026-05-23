@@ -1,0 +1,307 @@
+# depslib dependency file v1.0
+1775308325 source:d:\umar\c++projects\shapemaker\imgui_docker\imgui.cpp
+	"imgui.h"
+	"imgui_internal.h"
+	<stdio.h>
+	<stdint.h>
+	<Windows.h>
+	<windows.h>
+	<TargetConditionals.h>
+	"stb_sprintf.h"
+	<Carbon/Carbon.h>
+	<shellapi.h>
+	<sys/wait.h>
+	<unistd.h>
+	<imm.h>
+	"imgui_user.inl"
+
+1775308325 d:\umar\c++projects\shapemaker\imgui_docker\imgui.h
+	"imconfig.h"
+	<float.h>
+	<stdarg.h>
+	<stddef.h>
+	<string.h>
+	<assert.h>
+	"imgui_user.h"
+
+1775308325 d:\umar\c++projects\shapemaker\imgui_docker\imconfig.h
+
+1775308325 d:\umar\c++projects\shapemaker\imgui_docker\imgui_internal.h
+	"imgui.h"
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<limits.h>
+	<immintrin.h>
+	<nmmintrin.h>
+
+1775308325 source:d:\umar\c++projects\shapemaker\imgui_docker\imgui_demo.cpp
+	"imgui.h"
+	<ctype.h>
+	<limits.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<stdint.h>
+	<inttypes.h>
+	<emscripten/version.h>
+
+1775308325 source:d:\umar\c++projects\shapemaker\imgui_docker\imgui_draw.cpp
+	"imgui.h"
+	"imgui_internal.h"
+	"misc/freetype/imgui_freetype.h"
+	<stdio.h>
+	<stdint.h>
+	"imstb_rectpack.h"
+	"imstb_truetype.h"
+	"../stb/stb_image_write.h"
+
+1775308325 d:\umar\c++projects\shapemaker\imgui_docker\imstb_rectpack.h
+	<stdlib.h>
+	<assert.h>
+
+1775308325 d:\umar\c++projects\shapemaker\imgui_docker\imstb_truetype.h
+	"stb_truetype.h"
+	<stdio.h>
+	"stb_truetype.h"
+	<math.h>
+	<math.h>
+	<math.h>
+	<math.h>
+	<math.h>
+	<stdlib.h>
+	<assert.h>
+	<string.h>
+	<string.h>
+
+1775308948 source:d:\umar\c++projects\shapemaker\imgui_docker\imgui_impl_glfw.cpp
+	"imgui.h"
+	"imgui_impl_glfw.h"
+	<GL/glfw3.h>
+	<GL/glfw3native.h>
+	<GLFW/glfw3native.h>
+	<X11/Xatom.h>
+	<dlfcn.h>
+	<GLFW/glfw3native.h>
+	<unistd.h>
+	<stdio.h>
+	<emscripten.h>
+	<emscripten/html5.h>
+	<GLFW/emscripten_glfw3.h>
+
+1775308325 d:\umar\c++projects\shapemaker\imgui_docker\imgui_impl_glfw.h
+	"imgui.h"
+
+1775308325 source:d:\umar\c++projects\shapemaker\imgui_docker\imgui_impl_opengl3.cpp
+	"imgui.h"
+	"imgui_impl_opengl3.h"
+	<stdio.h>
+	<stdint.h>
+	<TargetConditionals.h>
+	<OpenGLES/ES2/gl.h>
+	<GLES2/gl2.h>
+	<GLES2/gl2ext.h>
+	<OpenGLES/ES3/gl.h>
+	<GLES3/gl3.h>
+	"imgui_impl_opengl3_loader.h"
+	<stdio.h>
+
+1775308325 d:\umar\c++projects\shapemaker\imgui_docker\imgui_impl_opengl3.h
+	"imgui.h"
+	<TargetConditionals.h>
+
+1775308325 d:\umar\c++projects\shapemaker\imgui_docker\imgui_impl_opengl3_loader.h
+	<stdint.h>
+	<windows.h>
+	<stdlib.h>
+	<windows.h>
+	<dlfcn.h>
+	<dlfcn.h>
+
+1775308325 source:d:\umar\c++projects\shapemaker\imgui_docker\imgui_tables.cpp
+	"imgui.h"
+	"imgui_internal.h"
+	<stdint.h>
+
+1775308325 source:d:\umar\c++projects\shapemaker\imgui_docker\imgui_widgets.cpp
+	"imgui.h"
+	"imgui_internal.h"
+	<stdint.h>
+	"imstb_textedit.h"
+	"imstb_textedit.h"
+
+1775308325 d:\umar\c++projects\shapemaker\imgui_docker\imstb_textedit.h
+	<string.h>
+
+1776842532 source:d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\camera.cpp
+	"camera.h"
+
+1776842509 d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\camera.h
+	<GL/glad.h>
+	<GL/glfw3.h>
+	<math.h>
+	<GL/glm/glm.hpp>
+	<GL/glm/gtc/matrix_transform.hpp>
+	<GL/glm/gtc/type_ptr.hpp>
+	<GL/glm/gtx/rotate_vector.hpp>
+	<GL/glm/gtx/vector_angle.hpp>
+	<windows.h>
+	"shaderClass.h"
+	"shaderClass_Geo.h"
+
+1772824764 d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\shaderclass.h
+	<GL/glad.h>
+	<string>
+	<string.h>
+	<fstream>
+	<sstream>
+	<iostream>
+	<cerrno>
+
+1772824764 d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\shaderclass_geo.h
+	<GL/glad.h>
+	<string>
+	<string.h>
+	<fstream>
+	<sstream>
+	<iostream>
+	<cerrno>
+	"shaderClass.h"
+
+1772824764 source:d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\ebo.cpp
+	"EBO.h"
+
+1772824764 d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\ebo.h
+	<GL/glad.h>
+
+1772824764 source:d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\glad.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<GL/glad.h>
+	<windows.h>
+	<winapifamily.h>
+	<dlfcn.h>
+
+1772824764 source:d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\imageloader.cpp
+	<stb_image.h>
+
+1772886766 source:d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\shaderclass.cpp
+	"shaderClass.h"
+
+1772824764 source:d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\shaderclass_geo.cpp
+	"shaderClass_Geo.h"
+
+1772824764 source:d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\texture.cpp
+	"Texture.h"
+
+1772824764 d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\texture.h
+	<GL/glad.h>
+	"shaderClass.h"
+	<stb_image.h>
+
+1772824764 source:d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\vao.cpp
+	"VAO.h"
+
+1772824764 d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\vao.h
+	<GL/glad.h>
+	"VBO.h"
+
+1772824764 d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\vbo.h
+	<GL/glad.h>
+	<vector>
+	<GL/glm/glm.hpp>
+
+1772824764 source:d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\vbo.cpp
+	"VBO.h"
+
+1778952661 source:d:\umar\c++projects\shapemaker\main.cpp
+	"main.h"
+
+1778941606 d:\umar\c++projects\shapemaker\main.h
+	"Application/Application.h"
+	"Visualizer.h"
+	"Collider2D.h"
+	"Curves.h"
+	<chrono>
+
+1777805142 d:\umar\c++projects\shapemaker\application\application.h
+	<winsock2.h>
+	<ws2tcpip.h>
+	<iostream>
+	<vector>
+	<thread>
+	<queue>
+	<windows.h>
+	<inttypes.h>
+	<tchar.h>
+	<winbase.h>
+	"socketLib.h"
+
+1776594317 d:\umar\c++projects\shapemaker\application\socketlib.h
+	<winsock2.h>
+	<ws2tcpip.h>
+	<iostream>
+	<windows.h>
+	<inttypes.h>
+	<tchar.h>
+	<winbase.h>
+
+1778787700 d:\umar\c++projects\shapemaker\visualizer.h
+	"imGui_Docker/imgui.h"
+	"imGui_Docker/imgui_impl_glfw.h"
+	"imGui_Docker/imgui_impl_opengl3.h"
+	<iostream>
+	"Renderer/Renderer.h"
+
+1778276846 d:\umar\c++projects\shapemaker\renderer\renderer.h
+	<iostream>
+	<vector>
+	<algorithm>
+	<GL/glad.h>
+	<GL/glfw3.h>
+	<math.h>
+	<GL/glm/glm.hpp>
+	<GL/glm/gtc/matrix_transform.hpp>
+	<GL/glm/gtc/type_ptr.hpp>
+	<GL/glm/gtx/rotate_vector.hpp>
+	<GL/glm/gtx/vector_angle.hpp>
+	"GL_graphicsLib/shaderClass.h"
+	"GL_graphicsLib/VAO.h"
+	"GL_graphicsLib/VBO.h"
+	"GL_graphicsLib/EBO.h"
+	"GL_graphicsLib/camera.h"
+	"GL_graphicsLib/Texture.h"
+	"GL_graphicsLib/FrameBuffer.h"
+
+1772887412 d:\umar\c++projects\shapemaker\renderer\gl_graphicslib\framebuffer.h
+	<iostream>
+	<vector>
+	<algorithm>
+	<GL/glad.h>
+	<GL/glfw3.h>
+	<math.h>
+	<GL/glm/glm.hpp>
+	<GL/glm/gtc/matrix_transform.hpp>
+	<GL/glm/gtc/type_ptr.hpp>
+	<GL/glm/gtx/rotate_vector.hpp>
+	<GL/glm/gtx/vector_angle.hpp>
+
+1777107405 d:\umar\c++projects\shapemaker\collider2d.h
+	<iostream>
+	<vector>
+	<GL/glm/glm.hpp>
+	<GL/glm/gtc/matrix_transform.hpp>
+	<GL/glm/gtc/type_ptr.hpp>
+	<GL/glm/gtx/rotate_vector.hpp>
+	<GL/glm/gtx/vector_angle.hpp>
+
+1775497642 d:\umar\c++projects\shapemaker\curves.h
+	<iostream>
+	<vector>
+	<GL/glm/glm.hpp>
+	<GL/glm/gtc/matrix_transform.hpp>
+	<GL/glm/gtc/type_ptr.hpp>
+	<GL/glm/gtx/rotate_vector.hpp>
+	<GL/glm/gtx/vector_angle.hpp>
+

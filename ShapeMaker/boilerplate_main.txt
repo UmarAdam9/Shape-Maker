@@ -1,0 +1,149 @@
+#include "main.h"
+
+
+/************************************************************************
+Boilerplate for using Visualizer - v1.0
+The Application has a default IP of 192.168.100.20 and an open port 4992
+By Default the application creates a canvas and renders udp data stream coming
+from a server with IP 192.168.100.20 and port 4991
+*************************************************************************/
+
+
+
+struct sRenderingApplication : public sApplication
+{
+
+
+  void m_RenderFunction() override
+    {
+        //Visualizer Variables=========================
+        Visualizer myViz(2048,1152);
+        vector<Canvas>vecCan{ Canvas(1, 2048 , 1152)};
+        Renderer myRenderer(0,1,1,1,1,1);
+        myRenderer.init_renderer(5120000,2048,1152);
+
+
+        //Application Variables=========================
+        char localbufferprint[1500]={};
+
+        int spacing = 2;
+        vecCan[0].m_addIntSlider(&spacing , "spacing", 1 ,10);
+
+        int y_scale = 1;
+        vecCan[0].m_addIntSlider(&y_scale , "y_scale", 1 ,10);
+
+        int xOffset = 1000;
+        vecCan[0].m_addIntSlider(&xOffset , "xOffset", -10000 ,10000);
+
+        int yOffset = 0;
+        vecCan[0].m_addIntSlider(&yOffset , "yOffset", -1000 ,1000);
+
+
+        float lineWeight = 0.1;
+        vecCan[0].m_addFloatSlider(&lineWeight , "lineWeight", 0 ,1);
+
+
+        long long totalTime = 0;
+        int frameCounter = 0;
+
+
+        //main while Loop================================
+        while(!glfwWindowShouldClose(myViz.m_window))
+        {
+
+            //=================
+            //Timing
+            //==================
+             auto start = high_resolution_clock::now();
+
+
+
+            //*********Application Logic************************************************
+            getDataFromUDPThread( m_udpRecvInfo[0], localbufferprint, 1300);
+
+
+
+
+
+
+            //*********Draw everything************************************************
+            //==================
+            //start viz
+            //==================
+            myViz.m_startFrame();
+            //==================
+
+
+
+
+             vecCan[0].m_bindCanvas(myRenderer); //updates mouse position as well
+
+                if(vecCan[0].m_isActive)
+                    AssignScrollCallbackVariables(myViz,vecCan[0]);
+
+                for(int i=0;i<1300 - 1;i++)
+                {
+                   // myRenderer.DrawCircle2D(vec2( i*spacing- xOffset, localbufferprint[i]* y_scale - yOffset),2,vec3(1,1,1),0.3,vecCan[0].m_funcScale);
+                    myRenderer.DrawLine2D(vec2( i*spacing - xOffset, localbufferprint[i]*y_scale - yOffset),vec2( (i+1)*spacing- xOffset, localbufferprint[i+1]*y_scale - yOffset),vec3(1,1,1),lineWeight,vecCan[0].m_funcScale);
+
+                }
+
+                //draw mouse not in world space but rather translated and at a constant scale
+                if( vecCan[0].m_isActive)
+                   myRenderer.DrawCircle2D(vec2( vecCan[0].m_mouseWorldCoord.x, vecCan[0].m_mouseWorldCoord.y),2,vec3(1,0,0),0.3,1);
+
+             vecCan[0].m_RenderCanvas(myRenderer);
+
+
+
+            //=================
+            //Render Viz
+            //=================
+            myViz.m_finishFrame(myRenderer);
+            //=================
+
+
+            //=================
+            //Timing
+            //=================
+            auto end = high_resolution_clock::now();
+            auto duration = duration_cast<microseconds>(end - start);
+
+            totalTime += duration.count();
+            frameCounter++;
+
+            if(frameCounter == 60)
+            {
+                cout << "Avg frame time (60 frames): "
+                     << (totalTime / 60.0) << " us\n";
+
+                frameCounter = 0;
+                totalTime = 0;
+            }
+            //=================
+
+        }
+        myViz.m_destroyViz();
+    }
+
+};
+
+sRenderingApplication myApp;
+
+int main()
+{
+    char appIP[] = "192.168.100.20";
+    char serverIP[] = "192.168.100.20";
+    vector<int>portArr = {4992,4991};
+    vector<char*>serverIPArr = {serverIP};
+    if( myApp.m_initApp(1,appIP,portArr ,serverIPArr ,2) == 0)
+    {
+        cout<<"App initialized successfully!"<<endl;
+        myApp.m_startApp();
+    }
+    else
+        cout<<"App initialization failed"<<endl;
+
+    return 0;
+}
+

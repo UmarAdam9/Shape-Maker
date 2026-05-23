@@ -1,0 +1,41 @@
+#version 330 core
+
+out vec4 FragColor;
+
+in vec2 uv_coord;
+
+uniform sampler2D screenTexture;
+uniform vec2 srcResolution;
+
+void main()
+{
+    vec2 srcTexelSize = 1.0 / srcResolution;
+    float x = srcTexelSize.x;
+    float y = srcTexelSize.y;
+
+    vec3 a = texture(screenTexture, vec2(uv_coord.x - 2*x, uv_coord.y + 2*y)).rgb;
+    vec3 b = texture(screenTexture, vec2(uv_coord.x,       uv_coord.y + 2*y)).rgb;
+    vec3 c = texture(screenTexture, vec2(uv_coord.x + 2*x, uv_coord.y + 2*y)).rgb;
+
+    vec3 d = texture(screenTexture, vec2(uv_coord.x - 2*x, uv_coord.y)).rgb;
+    vec3 e = texture(screenTexture, vec2(uv_coord.x,       uv_coord.y)).rgb;
+    vec3 f = texture(screenTexture, vec2(uv_coord.x + 2*x, uv_coord.y)).rgb;
+
+    vec3 g = texture(screenTexture, vec2(uv_coord.x - 2*x, uv_coord.y - 2*y)).rgb;
+    vec3 h = texture(screenTexture, vec2(uv_coord.x,       uv_coord.y - 2*y)).rgb;
+    vec3 i = texture(screenTexture, vec2(uv_coord.x + 2*x, uv_coord.y - 2*y)).rgb;
+
+    vec3 j = texture(screenTexture, vec2(uv_coord.x - x, uv_coord.y + y)).rgb;
+    vec3 k = texture(screenTexture, vec2(uv_coord.x + x, uv_coord.y + y)).rgb;
+    vec3 l = texture(screenTexture, vec2(uv_coord.x - x, uv_coord.y - y)).rgb;
+    vec3 m = texture(screenTexture, vec2(uv_coord.x + x, uv_coord.y - y)).rgb;
+
+    vec3 col = vec3(0.0);
+
+    col += e * 0.125;
+    col += (a + c + g + i) * 0.03125;
+    col += (b + d + f + h) * 0.0625;
+    col += (j + k + l + m) * 0.125;
+
+    FragColor = vec4(col, 1.0);
+}

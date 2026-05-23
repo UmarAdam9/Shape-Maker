@@ -1,0 +1,26 @@
+  //mouse interaction===============================
+    squareCollider.update_to_World_Space();
+
+    if( vecCan[0].m_isActive)
+    {
+       AssignScrollCallbackVariables(myViz,vecCan[0]);
+
+        if( GetAsyncKeyState(VK_LBUTTON) )
+        {
+            if(squareCollider.isActive)
+            {
+                squareCollider.position = vecCan[0].m_mouseWorldCoord/vecCan[0].m_funcScale;
+            }
+            else
+            {
+                if(mouseCheckerCollider( vecCan[0].m_mouseWorldCoord,squareCollider,vecCan[0].m_funcScale)==true)
+                    squareCollider.isActive = true;
+                else
+                    squareCollider.isActive = false;
+            }
+        }
+        else
+        {
+             squareCollider.isActive = false;
+        }
+        }

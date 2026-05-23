@@ -1,0 +1,19 @@
+#version 330 core
+
+layout (location = 0) in vec2  aPos;
+layout (location = 1) in vec4  albedo;
+
+out vec4 color;
+
+
+uniform mat4 camMatrix;
+
+
+void main()
+{
+
+    gl_Position =  camMatrix  * vec4(aPos.xy,-0.8,1.0);
+    color = albedo;
+
+
+}

@@ -1,0 +1,19 @@
+#version 330 core
+
+out vec4 FragColor;
+
+in vec2 uv_coord;
+
+uniform sampler2D screenTexture;
+uniform vec4 bgColor;
+
+void main()
+{
+
+
+vec4 col = bgColor;
+FragColor = vec4(col.r *(1-gl_FragCoord.y/800.0f), col.g*(1-gl_FragCoord.y/800.0f), col.b*(1-gl_FragCoord.y/800.0f),1);
+
+}
+
+

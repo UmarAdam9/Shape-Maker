@@ -1,0 +1,44 @@
+#version 330 core
+
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec2 uv_coord_in;
+layout (location = 2) in vec3 Col_in;
+layout (location = 3) in float line_len_in;
+layout (location = 4) in float line_thickness_in;
+layout (location = 5) in float select_in;
+
+out vec3 color;
+out vec2 uv_coord;
+out float line_len;
+out float line_thickness;
+out float select;
+
+
+uniform mat4 camMatrix;
+
+
+mat4 scaleMatrix = mat4(
+    line_len_in, 0.0, 0.0, 0.0,
+    0.0, line_len_in, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 1.0
+);
+
+void main()
+{
+    int s = int(select_in);  // rounds properly
+
+    if(s == 2)
+    {
+         gl_Position =   vec4(aPos.x,aPos.y,aPos.z,1.0f);   //giving 0 instead of apos.z breaks even though it is 0.0f ... idk
+    }
+    else
+        gl_Position =  camMatrix  *  vec4(aPos.x,aPos.y,aPos.z,1.0);
+
+
+    color = Col_in;
+    uv_coord    = uv_coord_in;
+    line_len = line_len_in;
+    line_thickness = line_thickness_in;
+    select = select_in;
+}

@@ -1,0 +1,113 @@
+#version 330 core
+
+out vec4 FragColor;
+
+in vec3 color;
+in vec2 uv_coord;
+in float line_len;
+in float line_thickness;
+in float select;
+
+uniform sampler2D screenTexture;
+
+uniform mat3 kernel;
+
+const float offset_x = 1.0f/1800.0f;
+const float offset_y = 1.0f/900.0f;
+
+vec2 offsets[9]= vec2[]
+(
+ vec2(-offset_x, offset_y) ,  vec2(0.0f, offset_y) , vec2(offset_x, offset_y),
+ vec2(-offset_x, 0.0f) ,      vec2(0.0f , 0.0f) ,   vec2(offset_x,0.0f),
+ vec2(-offset_x, -offset_y) , vec2(0.0f,-offset_y) , vec2(offset_x, -offset_y)
+
+);
+
+float kernel_3[9] = float[]  //box blur kernel DONOT use 1/9 use 1.0f/9.0f !
+(
+     1.0f/9.0f,  1.0f/9.0f, 1.0f/9.0f,
+     1.0f/9.0f,  1.0f/9.0f, 1.0f/9.0f,
+     1.0f/9.0f,  1.0f/9.0f, 1.0f/9.0f
+);
+
+void main()
+{
+    int s = int(select );  // rounds properly
+
+    float thickness = line_thickness;
+    vec3 col = color;
+    float val;
+    float blur=0.2f;
+    float aspect_ratio = line_len;
+
+    float horizontal_thres = aspect_ratio/2-0.5*blur - thickness;
+
+    vec2 uv = uv_coord;
+
+
+    if(s == 0)
+    {
+        float radius = length(vec2(horizontal_thres,0) - uv.xy);
+        float radius2 = length(vec2(-horizontal_thres,0) - uv.xy);
+
+        //top and bottom edges
+        if(uv.x < horizontal_thres && uv.x > -horizontal_thres )
+        {
+            if(uv.y < 0.0)
+            {
+                 val = 1.0 - abs( smoothstep(-thickness,-thickness-blur,uv.y));
+            }
+            else
+            {
+                 val = 1.0 - (smoothstep(thickness,thickness+blur,uv.y));
+            }
+        }
+
+        //end caps
+        else
+        {
+            if(uv.x > 0.0)
+                val = 1.0 - smoothstep(thickness,thickness+blur,radius );
+            else
+                val = 1.0 - abs( smoothstep(thickness,thickness+blur,radius2));
+        }
+
+
+        col = val*col;
+
+
+
+        FragColor = vec4(col.r,col.g,col.b,val);
+    }
+
+    else if(s==1)
+    {
+
+        if(line_len > 0.99)
+        {
+            val = 1.0f - smoothstep(1.0,1.0+line_thickness,length(uv.xy) );
+            col = val*vec3(color.r, color.g, color.b);
+            FragColor = vec4(col.r,col.g,col.b,val);
+
+        }
+        else
+        {
+            val = (smoothstep(1.0-line_len,1.0-line_len+line_thickness,length(uv.xy) )  - smoothstep(1.0,1.0+line_thickness,length(uv.xy) ));
+            col = val*vec3(color.r, color.g, color.b);
+            FragColor = vec4(col.r,col.g,col.b,val);
+        }
+
+
+    }
+
+    else
+    {
+        for(int i=0;i<9;i++)
+            col+=vec3(texture(screenTexture,uv_coord.xy + offsets[i])) * kernel_3[i]; //texCoords.xy returns a vec2(texCoord.x,texCoords.y)
+
+        FragColor = vec4(col.x,col.y,col.z,1.0f);
+
+    }
+
+}
+

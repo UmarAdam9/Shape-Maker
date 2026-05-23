@@ -1,0 +1,22 @@
+#version 330 core
+
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 trans;
+out vec3 color;
+
+uniform mat4 camMatrix;
+
+void main()
+{
+
+  mat4 transMatrix = mat4(  //brother the matrices in glsl should be transposed wth whyyyyy
+    1.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0,
+    trans.x, trans.y, trans.z, 1.0
+);
+
+
+    gl_Position =  camMatrix  * transMatrix * vec4(aPos,1.0);
+    color = trans;
+}

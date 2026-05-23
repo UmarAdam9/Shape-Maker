@@ -1,0 +1,70 @@
+#version 330 core
+
+out vec4 FragColor;
+
+in vec2 uv_coord;
+
+uniform sampler2D screenTexture;
+
+
+const float offset_x = 1.0f/800.0f;
+const float offset_y = 1.0f/800.0f;
+
+vec2 offsets[9]= vec2[]
+(
+ vec2(-offset_x, offset_y) ,  vec2(0.0f, offset_y) , vec2(offset_x, offset_y),
+ vec2(-offset_x, 0.0f) ,      vec2(0.0f , 0.0f) ,   vec2(offset_x,0.0f),
+ vec2(-offset_x, -offset_y) , vec2(0.0f,-offset_y) , vec2(offset_x, -offset_y)
+
+);
+
+float kernel_3[9] = float[]  //box blur kernel DONOT use 1/9 use 1.0f/9.0f !
+(
+     1.0f/9.0f,  1.0f/9.0f, 1.0f/9.0f,
+     1.0f/9.0f,  1.0f/9.0f, 1.0f/9.0f,
+     1.0f/9.0f,  1.0f/9.0f, 1.0f/9.0f
+);
+
+float kernel_4[9] = float[]  //Gaussian blur kernel DONOT use 1/9 use 1.0f/9.0f !
+(
+    1.0f/16.0f,  1.0f/8.0f, 1.0f/16.0f,
+    1.0f/8.0f,   1.0f/4.0f, 1.0f/8.0f,
+    1.0f/16.0f,  1.0f/8.0f, 1.0f/16.0f
+);
+
+
+
+void main()
+{
+
+    vec3 col = vec3(0.0);
+
+    for(int i=0;i<9;i++)
+        col+=vec3(texture(screenTexture,uv_coord.xy + offsets[i])) * kernel_4[i];
+
+    FragColor = vec4(col.x,col.y,col.z,1.0f);
+
+
+
+
+   // vec3 col = vec3(0.0);
+   // col = vec3(texture(screenTexture,uv_coord.xy ));
+
+   // vec2 up_pixel = vec2(uv_coord.x, uv_coord.y + 5*offset_y);
+
+   // vec3 col_up_1 = vec3(texture(screenTexture,up_pixel.xy));
+
+   // if(length(col_up_1) > 1.0f)
+   // {
+   //     FragColor = vec4(1.0f,0.0f,0.0f,1.0f);
+    //}
+   // else
+    //    FragColor = vec4(col.x,col.y,col.z,1.0f);
+
+
+
+
+
+
+}
+

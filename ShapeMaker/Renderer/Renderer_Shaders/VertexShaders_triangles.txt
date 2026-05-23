@@ -1,0 +1,43 @@
+#version 330 core
+
+layout (location = 0) in vec3  aPos;
+layout (location = 1) in vec3  trans;
+layout (location = 2) in vec3  normal;
+layout (location = 3) in vec3  albedo;
+layout (location = 4) in float roughness;
+layout (location = 5) in vec3  reflectance;
+
+out vec3 color;
+out vec3 normal_out;
+out float roughness_out;
+out vec3 reflectance_out;
+
+out vec3 pos_out;
+
+
+uniform mat4 camMatrix;
+
+
+void main()
+{
+
+  mat4 transMatrix = mat4(  //brother the matrices in glsl should be transposed wth whyyyyy
+    1.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0,
+    trans.x, trans.y, trans.z, 1.0
+);
+
+
+    gl_Position =  camMatrix  * transMatrix * vec4(aPos,1.0);
+    color = albedo;
+    //normal_out = normal;
+    reflectance_out = reflectance;
+    roughness_out = roughness;
+    pos_out = (transMatrix * vec4(aPos,1.0)).xyz;
+
+    mat3 normalMatrix = transpose(inverse(mat3(transMatrix)));
+    normal_out = normalize(normalMatrix * normal);
+
+
+}

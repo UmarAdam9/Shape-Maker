@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ShapeMaker" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ShapeMaker" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ShapeMaker" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="Application/Application.h" />
+		<Unit filename="Application/socketLib.h" />
+		<Unit filename="Collider2D.h" />
+		<Unit filename="Curves.h" />
+		<Unit filename="Demos/GraphDemo.txt" />
+		<Unit filename="Demos/mousePickingDemo.txt" />
+		<Unit filename="Docs/AssignScrollCallbackVariables.png" />
+		<Unit filename="ImGui_Docker/LICENSE.txt" />
+		<Unit filename="ImGui_Docker/imconfig.h" />
+		<Unit filename="ImGui_Docker/imgui.cpp" />
+		<Unit filename="ImGui_Docker/imgui.h" />
+		<Unit filename="ImGui_Docker/imgui_demo.cpp" />
+		<Unit filename="ImGui_Docker/imgui_draw.cpp" />
+		<Unit filename="ImGui_Docker/imgui_impl_glfw.cpp" />
+		<Unit filename="ImGui_Docker/imgui_impl_glfw.h" />
+		<Unit filename="ImGui_Docker/imgui_impl_opengl3.cpp" />
+		<Unit filename="ImGui_Docker/imgui_impl_opengl3.h" />
+		<Unit filename="ImGui_Docker/imgui_impl_opengl3_loader.h" />
+		<Unit filename="ImGui_Docker/imgui_internal.h" />
+		<Unit filename="ImGui_Docker/imgui_tables.cpp" />
+		<Unit filename="ImGui_Docker/imgui_widgets.cpp" />
+		<Unit filename="ImGui_Docker/imstb_rectpack.h" />
+		<Unit filename="ImGui_Docker/imstb_textedit.h" />
+		<Unit filename="ImGui_Docker/imstb_truetype.h" />
+		<Unit filename="Renderer/GL_graphicsLib/EBO.cpp" />
+		<Unit filename="Renderer/GL_graphicsLib/EBO.h" />
+		<Unit filename="Renderer/GL_graphicsLib/FrameBuffer.h" />
+		<Unit filename="Renderer/GL_graphicsLib/ImageLoader.cpp" />
+		<Unit filename="Renderer/GL_graphicsLib/Texture.cpp" />
+		<Unit filename="Renderer/GL_graphicsLib/Texture.h" />
+		<Unit filename="Renderer/GL_graphicsLib/VAO.cpp" />
+		<Unit filename="Renderer/GL_graphicsLib/VAO.h" />
+		<Unit filename="Renderer/GL_graphicsLib/VBO.cpp" />
+		<Unit filename="Renderer/GL_graphicsLib/VBO.h" />
+		<Unit filename="Renderer/GL_graphicsLib/camera.cpp" />
+		<Unit filename="Renderer/GL_graphicsLib/camera.h" />
+		<Unit filename="Renderer/GL_graphicsLib/glad.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Renderer/GL_graphicsLib/shaderClass.cpp" />
+		<Unit filename="Renderer/GL_graphicsLib/shaderClass.h" />
+		<Unit filename="Renderer/GL_graphicsLib/shaderClass_Geo.cpp" />
+		<Unit filename="Renderer/GL_graphicsLib/shaderClass_Geo.h" />
+		<Unit filename="Renderer/Renderer.h" />
+		<Unit filename="Renderer/Renderer_Shaders/FragmentShader.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/FragmentShader_2D.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/FragmentShader_Brightness.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/FragmentShader_Downsample.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/FragmentShader_FrameBuffer.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/FragmentShader_Line.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/FragmentShader_PostProcessing.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/FragmentShader_Upsample.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/FragmentShader_bg.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/FragmentShader_manual.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/FragmentShader_triangles.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/VertexShader.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/VertexShader_2D.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/VertexShader_FrameBuffer.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/VertexShader_Line.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/VertexShader_PostProcessing.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/VertexShader_manual.txt" />
+		<Unit filename="Renderer/Renderer_Shaders/VertexShaders_triangles.txt" />
+		<Unit filename="Visualizer.h" />
+		<Unit filename="boilerplate_main.txt" />
+		<Unit filename="main.cpp" />
+		<Unit filename="main.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
